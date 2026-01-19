@@ -1,0 +1,15 @@
+from sqlalchemy.orm import Session
+from sqlalchemy import desc
+from models.reports import Reports
+from typing import List
+
+def get_reports_by_lot_id(db: Session, lot_id: int) -> List[Reports]:
+    """
+    指定されたロットIDに紐づく日報を取得し、日付の新しい順にソート
+    """
+    return (
+        db.query(Reports)
+        .filter(Reports.lot_id == lot_id)
+        .order_by(desc(Reports.report_date))  # 新しい順
+        .all()
+    )

@@ -1,0 +1,48 @@
+from pydantic import BaseModel, field_validator
+from datetime import datetime
+
+
+
+class LotsResponse(BaseModel):
+    id: int
+    lot_id: str
+    farm: str
+    house: str
+    crops: str | None = None
+    grown_counts: int = None
+    created_at: datetime | None = None
+
+    model_config = {"from_attributes": True}
+
+
+class LotCreate(BaseModel):
+    lot_id: str
+    farm: str
+    house: str
+    crops: str | None = None
+    grown_counts: int | None = None
+
+    @field_validator("grown_counts", mode="before")
+    def normalize_fullwidth_numbers(cls, v):
+        if v is None:
+            return None
+        
+        if isinstance(v, str):
+            v = v.translate(str.maketrans(
+                "0 1 2 3 4 5 6 7 8 9",
+                "0123456789"
+            ))
+            return int(v)
+        
+        return v
+
+
+class ReportCreate(BaseModel):
+    lot_id: str
+    date: datetime
+    plant_condition: int
+    pest_and_disease_situation: int
+    comment: str | None = None
+    image_path: str | None = None
+
+    model_config = {"from_attributes": True}
