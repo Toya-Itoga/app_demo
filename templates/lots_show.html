@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ロット一覧</title>
+</head>
+
+<body>
+    <h1>ロット一覧</h1>
+
+    {% if lots %}
+    <div>
+        {% for lot in lots %}
+        <div style="border: 1px solid #ccc; padding: 8px; margin-bottom: 8px;">
+            <h2>{{ lot.lot_id }}</h2>
+            <p>{{ lot.farm or '-' }} / {{ lot.house or '-'}}</p>
+            <p>栽培作物: {{ lot.crops or '未設定' }}</p>
+            <p>栽培品種: {{ lot.variety or '未設定' }}</p>
+
+            <!-- <a href="/api/reports/reports/{{ lot.lot_id }}/html">最新の日報を見る</a>
+            <a href="/api/lots/create_report_form/{{ lot.lot_id }}">日報を書く</a> -->
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>ロットが登録されていません</p>
+    {% endif %}
+
+</body>
+
+</html>

@@ -1,6 +1,6 @@
 from sqlalchemy import desc
 from sqlalchemy.orm import Session
-from models.report import Reports
+from FastAPI.models.reports import Reports
 from typing import List
 from schemas.schema import ReportCreate
 
