@@ -9,5 +9,4 @@ def create_report_service(db: Session, report_data: ReportCreate):
     """
     新規日報を日報テーブルに追加するサービス関数
     """
-    report = create_report_to_db(db, report_data)
-    return report
+    return create_report_to_db(db, report_data)

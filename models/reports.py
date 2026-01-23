@@ -11,8 +11,8 @@ class Reports(Base):
     id = Column(Integer, primary_key=True, index=True)
     lot_id = Column(String, ForeignKey("lots.lot_id"), nullable=False)
     date = Column(DateTime, server_default=func.now(), nullable=False)
-    plant_condition = Column(Integer, nullable=True)
-    pest_and_disease_situation = Column(Integer, nullable=True)
+    plant_status = Column(Integer, nullable=True)
+    pests_and_diseases_status = Column(Integer, nullable=True)
     comment = Column(String, nullable=True)
     image_path = Column(String, nullable=True)
 

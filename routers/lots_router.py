@@ -11,6 +11,7 @@ from services.lots_service import (
     get_all_lots_service,
     create_lot_service
 )
+from utils.datetime import today_iso
 
 
 
@@ -18,7 +19,7 @@ router = APIRouter()
 templates = Jinja2Templates(directory="templates")
 
 
-@router.get("/get_all")
+@router.get("/get_all", name="all_lots")
 def get_all_lots(request: Request, db: Session = Depends(get_db)):
     """
     ロット一覧画面を表示するAPIエンドポイント
@@ -46,14 +47,15 @@ def create_lot(
     """
     DBに新規ロットを追加するAPIエンドポイント
     """
-
+    created_at = today_iso()
     lot_data = LotCreate(
         lot_id=lot_id,
+        created_at=created_at,
         farm=farm,
         house=house,
         crops=crops,
         grown_counts=grown_counts,
-        created_at=created_at,
+        # created_at=created_at,
     )
 
     create_lot_service(db, lot_data)

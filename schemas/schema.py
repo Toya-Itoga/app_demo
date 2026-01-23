@@ -40,8 +40,8 @@ class LotCreate(BaseModel):
 class ReportCreate(BaseModel):
     lot_id: str
     date: datetime
-    plant_condition: int
-    pest_and_disease_situation: int
+    plant_status: int
+    pests_and_diseases_status: int
     comment: str | None = None
     image_path: str | None = None
 
