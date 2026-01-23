@@ -2,8 +2,8 @@ from fastapi import FastAPI
 from routers import reports_router
 from routers import lots_router
 from database import Base, engine
-from models.lots import Lots
-from models.reports import Reports
+# from models.lots import Lots
+# from models.reports import Reports
 
 
 
