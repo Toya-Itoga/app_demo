@@ -11,7 +11,6 @@ from services.lots_service import (
     get_all_lots_service,
     create_lot_service
 )
-from utils.datetime import today_iso
 
 
 
@@ -34,6 +33,23 @@ def get_all_lots(request: Request, db: Session = Depends(get_db)):
     )
 
 
+@router.get("/add-form")
+def lot_add_form(reuqest: Request):
+    return templates.TemplateResponse(
+        "partials/lot_modal.html",
+        {
+            "request": reuqest,
+            "mode": "create",
+            "lot": None,
+        }
+    )
+
+
+# @router.get("/edit-form/{lot_id}")
+# def lot_edit_form(request: Request, lot_id: str):
+#     lot = 
+
+
 @router.post("/create_lot")
 def create_lot(
     lot_id: str = Form(...),
@@ -46,7 +62,6 @@ def create_lot(
     """
     DBに新規ロットを追加するAPIエンドポイント
     """
-    created_at = today_iso()
     lot_data = LotCreate(
         lot_id=lot_id,
         farm=farm,

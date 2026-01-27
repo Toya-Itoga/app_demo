@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ロット一覧</title>
+
+    <!-- htmx -->
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
 </head>
 
 <body>
@@ -23,10 +27,23 @@
             <a href="/api/reports/create_report_form/{{ lot.lot_id }}">日報を書く</a>
         </div>
         {% endfor %}
+        {% else %}
+        <p>ロットが登録されていません</p>
+        {% endif %}
     </div>
-    {% else %}
-    <p>ロットが登録されていません</p>
-    {% endif %}
+
+    <button hx-get="/api/lots/add-form" hx-target="#lot-add-dialog-content" hx-swap="innerHTML" class="lot-add-btn">
+        ＋
+    </button>
+
+    <dialog id="lot-add-dialog">
+        <div id="lot-add-dialog-content" _="
+                on htmx:afterSwap
+                    call #lot-add-dialog.showModal()
+                end
+            ">
+        </div>
+    </dialog>
 
 </body>
 

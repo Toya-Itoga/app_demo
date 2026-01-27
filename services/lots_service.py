@@ -18,6 +18,9 @@ def get_all_lots_service(db: Session) -> List[Lots]:
     return lots
 
 
+# def get_lot_by_lot_id(db: Session, lot_id: str):
+
+
 def create_lot_service(db: Session, lot_data: LotCreate) -> Lots:
     """
     新規ロットをロットテーブルに追加するサービス関数

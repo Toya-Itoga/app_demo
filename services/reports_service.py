@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 from typing import List, Optional, Dict, Any
+from datetime import datetime
 
 from repositories.reports_repositories import (
     create_report_to_db,
@@ -37,8 +38,12 @@ def get_report_by_lot_id_service(db: Session, lot_id: str, date_q: Optional[str]
 
     target_index = 0
     if date_q:
+        try:
+            date_q_obj = datetime.strptime(date_q, "%Y-%m-%d").date()
+        except ValueError:
+            date_q_obj = None
         for index, item in enumerate(items_dict):
-            if item.get("date") == date_q:
+            if item.get("date") == date_q_obj:
                 target_index = index
                 break
 
