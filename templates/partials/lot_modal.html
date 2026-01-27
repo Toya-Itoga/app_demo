@@ -1,11 +1,11 @@
-<form action="lot-form" method="post"
+<form class="lot-form" method="post"
     action="{{ '/api/lots/create_lot' if mode == 'create' else '/api/lots/update_lot' }}">
     <div class="lot-form__field">
         <label for="lot_id">ロットID</label>
         {% if mode == 'create' %}
-        <input type="text" id="lot_id" class="lot_id" value="">
+        <input type="text" id="lot_id" name="lot_id" value="">
         {% else %}
-        <input type="text" id="lot_id" class="lot_id" value="{{ lot.lot_id }}">
+        <input type="text" id="lot_id" name="lot_id" value="{{ lot.lot_id }}">
         {% endif %}
     </div>
 
@@ -25,8 +25,8 @@
     </div>
 
     <div class="lot-form__field">
-        <label for="variety">栽培品種</label>
-        <input id="variety" name="variety" type="text" value="{{ lot.variety if lot and lot.variety else '' }}">
+        <label for="grown_counts">栽培本数</label>
+        <input id="grown_counts" name="grown_counts" type="text" value="{{ lot.grown_counts if lot and lot.grown_counts else '' }}">
     </div>
 
     <div class="lot-form__action">

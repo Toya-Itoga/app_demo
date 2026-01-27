@@ -12,6 +12,13 @@ def get_all_lots_from_db(db: Session) -> List[Lots]:
     return db.query(Lots).all()
 
 
+def get_lot_by_lot_id_from_db(db: Session, lot_id: str) -> List[Lots]:
+    """
+    指定されたロットIDの情報のみ取得する関数
+    """
+    return db.query(Lots).filter(Lots.lot_id == lot_id).first()
+
+
 def create_lot_to_db(db: Session, lot_data: LotCreate):
     """
     新規ロットをロットテーブルに追加する関数

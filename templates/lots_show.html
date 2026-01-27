@@ -18,6 +18,13 @@
     <div>
         {% for lot in lots %}
         <div style="border: 1px solid #ccc; padding: 8px; margin-bottom: 8px;">
+            <button
+                hx-get="/api/lots/edit-form/{{ lot.lot_id }}"
+                hx-target="#lot-add-dialog-content"
+                hx-swap="innerHTML"
+                value="lot-edit-btn">編集
+            </button>
+
             <h2>{{ lot.lot_id }}</h2>
             <p>{{ lot.farm or '-' }} / {{ lot.house or '-'}}</p>
             <p>栽培作物: {{ lot.crops or '未設定' }}</p>

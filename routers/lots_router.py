@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request, Form, Depends
+from fastapi import APIRouter, Request, HTTPException, Form, Depends
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from typing import Optional
@@ -9,7 +9,8 @@ from database import get_db
 from schemas.schema import LotsResponse, LotCreate
 from services.lots_service import (
     get_all_lots_service,
-    create_lot_service
+    create_lot_service,
+    get_lot_by_lot_id_service,
 )
 
 
@@ -45,9 +46,20 @@ def lot_add_form(reuqest: Request):
     )
 
 
-# @router.get("/edit-form/{lot_id}")
-# def lot_edit_form(request: Request, lot_id: str):
-#     lot = 
+@router.get("/edit-form/{lot_id}")
+def lot_edit_form(request: Request, lot_id: str, db: Session = Depends(get_db),):
+    lot = get_lot_by_lot_id_service(db, lot_id)
+    if not lot:
+        raise HTTPException(status_code=404, detail="Lot not found")
+    
+    return templates.TemplateResponse(
+        "partials/lot_modal.html",
+        {
+            "request": request,
+            "mode": "edit",
+            "lot": lot,
+        }
+    )
 
 
 @router.post("/create_lot")
@@ -72,4 +84,4 @@ def create_lot(
 
     create_lot_service(db, lot_data)
 
-    return RedirectResponse("", status_code=303)
+    return RedirectResponse("/api/lots/get_all", status_code=303)
