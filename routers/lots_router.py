@@ -2,7 +2,7 @@ from fastapi import APIRouter, Request, Form, Depends
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from typing import Optional
-from datetime import datetime
+from datetime import date
 from sqlalchemy.orm import Session
 
 from database import get_db
@@ -41,7 +41,6 @@ def create_lot(
     house: str = Form(...),
     crops: Optional[str] = Form(None),
     grown_counts: Optional[int] = Form(None),
-    created_at: Optional[datetime] = Form(None),
     db: Session = Depends(get_db)
 ):
     """
@@ -50,12 +49,10 @@ def create_lot(
     created_at = today_iso()
     lot_data = LotCreate(
         lot_id=lot_id,
-        created_at=created_at,
         farm=farm,
         house=house,
         crops=crops,
         grown_counts=grown_counts,
-        # created_at=created_at,
     )
 
     create_lot_service(db, lot_data)

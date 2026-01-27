@@ -2,9 +2,13 @@ from fastapi import APIRouter, Request, Form, Query, Depends
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
+from typing import Optional
 
 from database import get_db
-from services.reports_service import create_report_service
+from services.reports_service import (
+    create_report_service,
+    get_report_by_lot_id_service,
+)
 from schemas.schema import ReportCreate
 from utils.datetime import today_iso
 
@@ -48,3 +52,23 @@ def create_report(
 
     create_report_service(db, report_data)
     return RedirectResponse(url="/api/lots/get_all", status_code=303)
+
+
+@router.get("/get_reports/{lot_id}")
+def get_reports_by_id(
+    request: Request,
+    lot_id: str,
+    date: Optional[str] = Query(None),
+    db: Session = Depends(get_db),
+):
+    all_reports = get_report_by_lot_id_service(db, lot_id, date)
+    detail_report = all_reports["detail_report"]
+    reports = all_reports["reports"]
+    return templates.TemplateResponse(
+        "reports_list.html",
+        {
+            "request": request,
+            "detail_report": detail_report,
+            "reports": reports,
+        }
+    )

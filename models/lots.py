@@ -1,5 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime
-from sqlalchemy.sql import func
+from sqlalchemy import Column, Integer, String, Date, text
 from sqlalchemy.orm import relationship
 from database import Base
 
@@ -14,6 +13,6 @@ class Lots(Base):
     house = Column(String, nullable=False)
     crops = Column(String, nullable=True)
     grown_counts = Column(Integer, nullable=True)
-    created_at = Column(DateTime, server_default=func.now())
+    created_at = Column(Date, nullable=False, server_default=text("CURRENT_DATE"),)
 
     reports = relationship("Reports", back_populates="lot")

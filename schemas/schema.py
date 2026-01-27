@@ -1,5 +1,5 @@
 from pydantic import BaseModel, field_validator
-from datetime import datetime
+from datetime import date
 
 
 
@@ -10,7 +10,7 @@ class LotsResponse(BaseModel):
     house: str
     crops: str | None = None
     grown_counts: int = None
-    created_at: datetime | None = None
+    created_at: date | None = None
 
     model_config = {"from_attributes": True}
 
@@ -39,7 +39,7 @@ class LotCreate(BaseModel):
 
 class ReportCreate(BaseModel):
     lot_id: str
-    date: datetime
+    date: date
     plant_status: int
     pests_and_diseases_status: int
     comment: str | None = None

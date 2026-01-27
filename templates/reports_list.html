@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>レポート一覧</title>
+</head>
+
+<body>
+    <!-- ロット一覧へ戻るボタン -->
+    <form method="get" action="/api/lots/get_all" class="back_btn_form">
+        <button type="submit" class="back_btn">ロット一覧へ</button>
+    </form>
+
+    <hr>
+
+    <!-- 詳細表示 -->
+    {% if detail_report %}
+    <div class="detail_report">
+        <p>ロット: {{ lot_id }}</p>
+        <p>日付: {{ detail_report.date }}</p>
+        <p>コメント: {{ detail_report.comment or 'コメントなし' }}</p>
+    </div>
+    {% else %}
+    <p>このロットの日報はまだありません</p>
+    {% endif %}
+
+    <hr>
+
+    <!-- 簡易表示 -->
+    <div class="reports">
+        {% if reports and reports|length > 0 %}
+        <div class="report_grid">
+            {% for it in reports %}
+            <div class="report_card">
+                <span class="date">{{ it.date }}</span>
+                <a class="detail_btn" href="/api/reports/get_reports/{{ it.lot_id }}?date={{ it.date }}">
+                    見る
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>他の日報はありません</p>
+        {% endif %}
+    </div>
+</body>
+
+</html>
