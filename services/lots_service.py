@@ -1,9 +1,11 @@
+from fastapi import HTTPException
 from sqlalchemy.orm import Session
 from typing import List
 from repositories.lots_repositories import (
     get_all_lots_from_db,
     create_lot_to_db,
     get_lot_by_lot_id_from_db,
+    update_lot_to_db,
 )
 from models.lots import Lots
 from schemas.schema import LotCreate
@@ -33,3 +35,13 @@ def create_lot_service(db: Session, lot_data: LotCreate) -> Lots:
     """
     lot = create_lot_to_db(db, lot_data)
     return lot
+
+
+def update_lot_service(db: Session, lot_id: str, update_data: LotCreate):
+    lot = get_lot_by_lot_id_from_db(db, lot_id)
+    if not lot:
+        raise HTTPException(status_code=404, detail="Lot not found")
+    
+    update_lot = update_lot_to_db(db, lot_id, update_data)
+
+    return update_lot

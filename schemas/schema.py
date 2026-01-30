@@ -37,6 +37,13 @@ class LotCreate(BaseModel):
         return v
 
 
+class LotUpdate(BaseModel):
+    farm: str
+    house: str
+    crops: str
+    grown_counts: int | None = None
+
+
 class ReportCreate(BaseModel):
     lot_id: str
     date: date

@@ -5,13 +5,13 @@
         {% if mode == 'create' %}
         <input type="text" id="lot_id" name="lot_id" value="">
         {% else %}
-        <input type="text" id="lot_id" name="lot_id" value="{{ lot.lot_id }}">
+        <input type="text" id="lot_id" name="lot_id" value="{{ lot.lot_id }}" readonly>
         {% endif %}
     </div>
 
     <div class="lot-form__field">
         <label for="farm">農場</label>
-        <input type="text" id="farm" name="farm" value="{{ lot.house if lot else '' }}">
+        <input type="text" id="farm" name="farm" value="{{ lot.farm if lot else '' }}">
     </div>
 
     <div class="lot-form__field">

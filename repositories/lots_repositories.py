@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from models.lots import Lots
 from typing import List
-from schemas.schema import LotCreate
+from schemas.schema import LotCreate, LotUpdate
 
 
 
@@ -35,4 +35,20 @@ def create_lot_to_db(db: Session, lot_data: LotCreate):
     db.commit()
     db.refresh(lot)
 
+    return lot
+
+
+def update_lot_to_db(db: Session, lot_id: str, update_data: LotUpdate):
+    lot = db.query(Lots).filter(Lots.lot_id == lot_id).first()
+
+    if not lot:
+        return None
+    
+    lot.farm = update_data.farm
+    lot.house = update_data.house
+    lot.crops = update_data.crops
+    lot.grown_counts = update_data.grown_counts
+
+    db.commit()
+    db.refresh(lot)
     return lot

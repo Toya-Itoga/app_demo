@@ -6,11 +6,12 @@ from datetime import date
 from sqlalchemy.orm import Session
 
 from database import get_db
-from schemas.schema import LotsResponse, LotCreate
+from schemas.schema import LotUpdate, LotCreate
 from services.lots_service import (
     get_all_lots_service,
     create_lot_service,
     get_lot_by_lot_id_service,
+    update_lot_service,
 )
 
 
@@ -83,5 +84,27 @@ def create_lot(
     )
 
     create_lot_service(db, lot_data)
+
+    return RedirectResponse("/api/lots/get_all", status_code=303)
+
+
+@router.post("/update_lot")
+def update_lot(
+    lot_id: str = Form(...),
+    farm: str = Form(...),
+    house: str = Form(...),
+    crops: Optional[str] = Form(None),
+    grown_counts: Optional[int] = Form(None),
+    db: Session = Depends(get_db)
+):
+    
+    update_data = LotUpdate(
+        farm=farm,
+        house=house,
+        crops=crops,
+        grown_counts=grown_counts,
+    )
+
+    update_lot_service(db, lot_id, update_data)
 
     return RedirectResponse("/api/lots/get_all", status_code=303)
