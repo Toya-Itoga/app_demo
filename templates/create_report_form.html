@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
@@ -14,20 +14,24 @@
 
     <h2>{{ lot_id }}</h2>
 
+    {% if existing_report %}
+    <form method="post" action="/api/reports/update_report/{{ lot_id }}?date={{ date }}">
+    {% else %}
     <form method="post" action="/api/reports/create_report/{{ lot_id }}?date={{ date }}">
+    {% endif %}
         <div>
             <label for="plant_status">植物の状態</label>
-            <input type="range" name="plant_status" min="1" max="5" value="3" required>
+            <input type="range" name="plant_status" min="1" max="5" value="{{ existing_report.plant_status if existing_report else 3 }}" required>
         </div>
 
         <div>
             <label for="pests_and_diseases_status">病害虫の状況</label>
-            <input type="range" name="pests_and_diseases_status" min="1" max="5" value="3" required>
+            <input type="range" name="pests_and_diseases_status" min="1" max="5" value="{{ existing_report.pests_and_diseases_status if existing_report else 3 }}" required>
         </div>
 
         <div>
             <label for="comment">コメント</label>
-            <textarea name="comment" id="comment" cols="200"></textarea>
+            <textarea name="comment" id="comment" cols="200">{{ existing_report.comment if existing_report else "" }}</textarea>
         </div>
 
         <div>

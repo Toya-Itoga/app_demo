@@ -4,9 +4,11 @@ from datetime import datetime
 
 from repositories.reports_repositories import (
     create_report_to_db,
-    get_report_by_lot_id_from_db
+    update_report_to_db,
+    get_report_by_lot_id_from_db,
+    get_report_by_lot_and_date_from_db,
 )
-from schemas.schema import ReportCreate
+from schemas.schema import ReportCreate, ReportUpdate
 
 
 
@@ -15,6 +17,13 @@ def create_report_service(db: Session, report_data: ReportCreate):
     新規日報を日報テーブルに追加するサービス関数
     """
     return create_report_to_db(db, report_data)
+
+
+def update_report_service(db: Session, lot_id:str, date, update_data: ReportUpdate):
+    """
+    既存日報を更新するサービス関数
+    """
+    return update_report_to_db(db, lot_id, date, update_data)
 
 
 def get_report_by_lot_id_service(db: Session, lot_id: str, date_q: Optional[str] = None) -> Dict[str, Any]:
@@ -61,3 +70,10 @@ def get_report_by_lot_id_service(db: Session, lot_id: str, date_q: Optional[str]
         "detail_report": detail_report,
         "reports": reports
     }
+
+
+def get_report_by_lot_and_date_service(db: Session, lot_id: str, date: str):
+    """
+    特定のロットIDと年月日のレポートを取得するサービス関数
+    """
+    return get_report_by_lot_and_date_from_db(db, lot_id, date)
