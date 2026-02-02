@@ -51,7 +51,7 @@ def create_report(
         plant_status=plant_status,
         pests_and_diseases_status=pests_and_diseases_status,
         comment=comment,
-        ai_summary="",
+        ai_summary = "【AI要約サンプル】\n植物評価4だが写真では果実表面に微小害虫による吸汁痕が広範囲に認められ\n病害虫2と整合。夜間低温と極端な乾燥が害虫増殖と生理障害を助長している可能性がある。\n"
         # image_path=image_path,
     )
 
@@ -93,6 +93,7 @@ def get_reports_by_id(
         "reports_list.html",
         {
             "request": request,
+            "lot_id": lot_id,
             "detail_report": detail_report,
             "reports": reports,
         }

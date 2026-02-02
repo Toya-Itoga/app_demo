@@ -10,7 +10,7 @@
 <body>
     <!-- ロット一覧へ戻るボタン -->
     <form method="get" action="/api/lots/get_all" class="back_btn_form">
-        <button type="submit" class="back_btn">ロット一覧へ</button>
+        <button type="submit" class="back-btn">ロット一覧へ</button>
     </form>
 
     <!-- 詳細表示 -->
@@ -18,8 +18,9 @@
     <div class="detail_report">
         <p>ロット: {{ lot_id }}</p>
         <p>日付: {{ detail_report.date }}</p>
-        <p>コメント: {{ detail_report.comment or 'コメントなし' }}</p>
-        <!-- <p>AIまとめ: {{ detail_report.ai_summary or 'AI要約はありません' }}</p> -->
+        <!-- <p>コメント: {{ detail_report.comment or 'コメントなし' }}</p> -->
+        <label for="ai_summary">AIまとめ</label>
+        <input type="text" name="ai_summary" value="{{ detail_report.ai_summary or 'AI要約はありません' }}" readonly>
     </div>
     {% else %}
     <p>日報が未登録です</p>

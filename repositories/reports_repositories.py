@@ -49,7 +49,8 @@ def create_report_to_db(db: Session, report_data: ReportCreate):
         plant_status=report_data.plant_status,
         pests_and_diseases_status=report_data.pests_and_diseases_status,
         comment=report_data.comment,
-        image_path=report_data.image_path
+        ai_summary=report_data.ai_summary,
+        image_path=report_data.image_path,
     )
     db.add(report)
     db.commit()

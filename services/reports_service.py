@@ -47,6 +47,7 @@ def get_report_by_lot_id_service(db: Session, lot_id: str, date_q: Optional[str]
             "plant_condition": i.plant_status,
             "pest_and_disease_situation": i.pests_and_diseases_status,
             "comment": i.comment,
+            "ai_summary": i.ai_summary,
             "image_path": i.image_path,
         }
         items_dict.append(row)
