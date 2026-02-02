@@ -32,6 +32,12 @@ def get_report_by_lot_id_service(db: Session, lot_id: str, date_q: Optional[str]
     """
     items = get_report_by_lot_id_from_db(db, lot_id)
 
+    if len(items) == 0:
+        return {
+            "detail_report": None,
+            "reports": [],
+        }
+
     items_dict: List[Dict[str, Any]] = []
     for i in items:
         row = {

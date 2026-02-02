@@ -13,8 +13,6 @@
         <button type="submit" class="back_btn">ロット一覧へ</button>
     </form>
 
-    <hr>
-
     <!-- 詳細表示 -->
     {% if detail_report %}
     <div class="detail_report">
@@ -23,7 +21,7 @@
         <p>コメント: {{ detail_report.comment or 'コメントなし' }}</p>
     </div>
     {% else %}
-    <p>このロットの日報はまだありません</p>
+    <p>日報が未登録です</p>
     {% endif %}
 
     <hr>
@@ -45,6 +43,7 @@
         <p>他の日報はありません</p>
         {% endif %}
     </div>
+
 </body>
 
 </html>
