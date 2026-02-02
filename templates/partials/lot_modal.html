@@ -3,7 +3,7 @@
     <div class="lot-form__field">
         <label for="lot_id">ロットID</label>
         {% if mode == 'create' %}
-        <input type="text" id="lot_id" name="lot_id" value="">
+        <input type="text" id="lot_id" name="lot_id" value="" required>
         {% else %}
         <input type="text" id="lot_id" name="lot_id" value="{{ lot.lot_id }}" readonly>
         {% endif %}
@@ -11,12 +11,12 @@
 
     <div class="lot-form__field">
         <label for="farm">農場</label>
-        <input type="text" id="farm" name="farm" value="{{ lot.farm if lot else '' }}">
+        <input type="text" id="farm" name="farm" value="{{ lot.farm if lot else '' }}" required>
     </div>
 
     <div class="lot-form__field">
         <label for="house">ハウス</label>
-        <input id="house" name="house" type="text" value="{{ lot.house if lot else '' }}">
+        <input id="house" name="house" type="text" value="{{ lot.house if lot else '' }}" required>
     </div>
 
     <div class="lot-form__field">
