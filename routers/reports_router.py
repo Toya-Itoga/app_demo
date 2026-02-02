@@ -51,6 +51,7 @@ def create_report(
         plant_status=plant_status,
         pests_and_diseases_status=pests_and_diseases_status,
         comment=comment,
+        ai_summary="",
         # image_path=image_path,
     )
 

@@ -16,6 +16,7 @@ class Reports(Base):
     plant_counts = Column(Integer, nullable=True)
     grown_counts = Column(Integer, nullable=True)
     comment = Column(String, nullable=True)
+    ai_summary = Column(String, nullable=True)
     image_path = Column(String, nullable=True)
 
     lot = relationship("Lots", back_populates="reports")

@@ -52,6 +52,7 @@ class ReportCreate(BaseModel):
     plant_status: int
     pests_and_diseases_status: int
     comment: str | None = None
+    ai_summary: str | None = None
     image_path: str | None = None
 
     model_config = {"from_attributes": True}

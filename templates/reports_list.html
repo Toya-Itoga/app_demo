@@ -19,6 +19,7 @@
         <p>ロット: {{ lot_id }}</p>
         <p>日付: {{ detail_report.date }}</p>
         <p>コメント: {{ detail_report.comment or 'コメントなし' }}</p>
+        <!-- <p>AIまとめ: {{ detail_report.ai_summary or 'AI要約はありません' }}</p> -->
     </div>
     {% else %}
     <p>日報が未登録です</p>
