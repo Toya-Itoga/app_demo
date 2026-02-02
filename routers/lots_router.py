@@ -69,7 +69,7 @@ def create_lot(
     farm: str = Form(...),
     house: str = Form(...),
     crops: Optional[str] = Form(None),
-    grown_counts: Optional[int] = Form(None),
+    plant_counts: Optional[int] = Form(None),
     db: Session = Depends(get_db)
 ):
     """
@@ -80,7 +80,8 @@ def create_lot(
         farm=farm,
         house=house,
         crops=crops,
-        grown_counts=grown_counts,
+        plant_counts=plant_counts,
+        grown_counts=plant_counts,
     )
 
     create_lot_service(db, lot_data)
@@ -94,7 +95,7 @@ def update_lot(
     farm: str = Form(...),
     house: str = Form(...),
     crops: Optional[str] = Form(None),
-    grown_counts: Optional[int] = Form(None),
+    plant_counts: Optional[int] = Form(None),
     db: Session = Depends(get_db)
 ):
     
@@ -102,7 +103,8 @@ def update_lot(
         farm=farm,
         house=house,
         crops=crops,
-        grown_counts=grown_counts,
+        plant_counts=plant_counts,
+        grown_counts=plant_counts,
     )
 
     update_lot_service(db, lot_id, update_data)

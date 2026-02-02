@@ -13,6 +13,8 @@ class Reports(Base):
     date = Column(Date, server_default=func.now(), nullable=False)
     plant_status = Column(Integer, nullable=True)
     pests_and_diseases_status = Column(Integer, nullable=True)
+    plant_counts = Column(Integer, nullable=True)
+    grown_counts = Column(Integer, nullable=True)
     comment = Column(String, nullable=True)
     image_path = Column(String, nullable=True)
 

@@ -28,7 +28,8 @@ def create_lot_to_db(db: Session, lot_data: LotCreate):
         farm=lot_data.farm,
         house=lot_data.house,
         crops=lot_data.crops,
-        grown_counts=lot_data.grown_counts
+        plant_counts=lot_data.plant_counts,
+        grown_counts=lot_data.plant_counts,
     )
 
     db.add(lot)
@@ -47,6 +48,7 @@ def update_lot_to_db(db: Session, lot_id: str, update_data: LotUpdate):
     lot.farm = update_data.farm
     lot.house = update_data.house
     lot.crops = update_data.crops
+    lot.plant_counts = update_data.plant_counts
     lot.grown_counts = update_data.grown_counts
 
     db.commit()

@@ -12,6 +12,7 @@ class Lots(Base):
     farm = Column(String, nullable=False)
     house = Column(String, nullable=False)
     crops = Column(String, nullable=True)
+    plant_counts = Column(Integer, nullable=True)
     grown_counts = Column(Integer, nullable=True)
     created_at = Column(Date, nullable=False, server_default=text("CURRENT_DATE"),)
 

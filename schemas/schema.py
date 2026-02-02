@@ -20,9 +20,10 @@ class LotCreate(BaseModel):
     farm: str
     house: str
     crops: str | None = None
+    plant_counts: int | None = None
     grown_counts: int | None = None
 
-    @field_validator("grown_counts", mode="before")
+    @field_validator("plant_counts", mode="before")
     def normalize_fullwidth_numbers(cls, v):
         if v is None:
             return None
@@ -41,6 +42,7 @@ class LotUpdate(BaseModel):
     farm: str
     house: str
     crops: str
+    plant_counts: int | None = None
     grown_counts: int | None = None
 
 
