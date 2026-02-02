@@ -1,2 +1,19 @@
+1. 以下コマンドでクローン
+git clone https://github.com/Toya-Itoga/app_demo.git
+
+2. 以下コマンドでクローンしたフォルダに移動
+cd <クローンしたフォルダ名>
+
+3. 以下コマンドで仮想環境を作成
+python3 -m venv .venv
+
+4. 以下コマンドで仮想環境をアクティブ化
 source .venv/bin/activate
+
+5. 以下コマンドでライブラリをインストール
+pip install -r requirements.txt
+
+6. 以下コマンドでuvicornを起動
 uvicorn main:app --reload
+
+7. http://localhost:8000 にアクセス
