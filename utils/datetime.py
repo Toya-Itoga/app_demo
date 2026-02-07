@@ -10,3 +10,6 @@ def today() -> date:
 
 def today_iso() -> str:
     return today().isoformat()
+
+def today_jp() -> str:
+    return today().strftime("%Y年 %-m月 %-d日")

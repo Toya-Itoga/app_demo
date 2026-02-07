@@ -1,0 +1,19 @@
+.back-btn {
+    height: 60px;
+    width: 180px;
+    border: none; 
+    border-radius: 8px;
+
+    font-weight: 600;
+    font-size: 24px;
+    background-color: mediumseagreen;
+    color: white;
+
+    box-shadow: none;
+    outline: none;
+    appearance: none;
+}
+
+.back-btn:active {
+    background-color: darkgreen;
+}

@@ -12,7 +12,7 @@ from services.reports_service import (
     get_report_by_lot_and_date_service,
 )
 from schemas.schema import ReportCreate, ReportUpdate
-from utils.datetime import today_iso
+from utils.datetime import today_iso, today_jp
 
 
 
@@ -23,6 +23,7 @@ templates = Jinja2Templates(directory="templates")
 @router.get("/create_report_form/{lot_id}")
 def create_report_form_show(request: Request, lot_id: str, db: Session = Depends(get_db)):
     date = today_iso()
+    display_date = today_jp()
     existing_report = get_report_by_lot_and_date_service(db, lot_id, date)
     return templates.TemplateResponse(
         "create_report_form.html",
@@ -30,6 +31,7 @@ def create_report_form_show(request: Request, lot_id: str, db: Session = Depends
             "request": request,
             "lot_id": lot_id,
             "date": date,
+            "display_date": display_date,
             "existing_report": existing_report,
         }
     )

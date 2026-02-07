@@ -1,0 +1,36 @@
+.basic-information {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    height: 110px;
+    width: 70%;
+    border: none;
+    border-radius: 10px;
+    background-color: darkgray;
+
+    gap: 6px;
+}
+
+.basic-information p {
+    margin: 0;
+    font-weight: 600;
+}
+
+.basic-information__id {
+    font-size: 30px;
+}
+
+.basic-information__date {
+    font-size: 26px;
+}
+
+
+
+.worker-input {
+    display: flex;
+    flex-direction: column;
+}

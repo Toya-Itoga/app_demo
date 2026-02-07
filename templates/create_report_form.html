@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>日報登録</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/create_report_form.css">
 </head>
 
 <body>
@@ -12,32 +16,46 @@
         <button type="submit" class="back-btn">ロット一覧へ</button>
     </form>
 
-    <h2>{{ lot_id }}</h2>
+    <div class="basic-information">
+        <p class="basic-information__id">{{ lot_id }}</p>
+        <p class="basic-information__date">{{ display_date }}</p>
+    </div>
 
-    {% if existing_report %}
-    <form method="post" action="/api/reports/update_report/{{ lot_id }}?date={{ date }}">
-    {% else %}
-    <form method="post" action="/api/reports/create_report/{{ lot_id }}?date={{ date }}">
-    {% endif %}
-        <div>
-            <label for="plant_status">植物の状態</label>
-            <input type="range" name="plant_status" min="1" max="5" value="{{ existing_report.plant_status if existing_report else 3 }}" required>
-        </div>
+    <div class="worker-input">
+        {% if existing_report %}
+        <form method="post" action="/api/reports/update_report/{{ lot_id }}?date={{ date }}">
+            {% else %}
+            <form method="post" action="/api/reports/create_report/{{ lot_id }}?date={{ date }}">
+                {% endif %}
+                <div class="slider">
+                    <div class="slider__plant_status">
+                        <label for="plant_status">植物の状態</label>
+                        <span>悪</span>
+                        <input type="range" name="plant_status" min="1" max="5"
+                            value="{{ existing_report.plant_status if existing_report else 3 }}" required>
+                        <span>良</span>
+                    </div>
 
-        <div>
-            <label for="pests_and_diseases_status">病害虫の状況</label>
-            <input type="range" name="pests_and_diseases_status" min="1" max="5" value="{{ existing_report.pests_and_diseases_status if existing_report else 3 }}" required>
-        </div>
+                    <div>
+                        <label for="pests_and_diseases_status">病害虫の状況</label>
+                        <span>悪</span>
+                        <input type="range" name="pests_and_diseases_status" min="1" max="5"
+                            value="{{ existing_report.pests_and_diseases_status if existing_report else 3 }}" required>
+                        <span>良</span>
+                    </div>
+                </div>
 
-        <div>
-            <label for="comment">コメント</label>
-            <textarea name="comment" id="comment" cols="200">{{ existing_report.comment if existing_report else "" }}</textarea>
-        </div>
+                <div>
+                    <label for="comment">コメント</label>
+                    <textarea name="comment" id="comment" cols="200"
+                        required>{{ existing_report.comment if existing_report else "" }}</textarea>
+                </div>
 
-        <div>
-            <button type="submit">保存</button>
-        </div>
-    </form>
+                <div>
+                    <button type="submit">保存</button>
+                </div>
+            </form>
+    </div>
 
 </body>
 
