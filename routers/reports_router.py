@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 from typing import Optional
 
 from database import get_db
+from services.lots_service import get_lot_by_lot_id_service
 from services.reports_service import (
     create_report_service,
     update_report_service,
@@ -24,12 +25,14 @@ templates = Jinja2Templates(directory="templates")
 def create_report_form_show(request: Request, lot_id: str, db: Session = Depends(get_db)):
     date = today_iso()
     display_date = today_jp()
+    lot_information = get_lot_by_lot_id_service(db, lot_id)
     existing_report = get_report_by_lot_and_date_service(db, lot_id, date)
     return templates.TemplateResponse(
         "create_report_form.html",
         {
             "request": request,
             "lot_id": lot_id,
+            "lot_information": lot_information,
             "date": date,
             "display_date": display_date,
             "existing_report": existing_report,

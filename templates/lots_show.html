@@ -11,6 +11,7 @@
     <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
 
     <!-- css -->
+    <link rel="stylesheet" href="/static/css/base.css">
     <link rel="stylesheet" href="/static/css/lots_show.css">
 </head>
 
@@ -20,17 +21,21 @@
     <hr>
 
     {% if lots %}
-    <div>
+    <div class="lot-list">
         {% for lot in lots %}
         <div class="lot-card">
-            <button class="lot-card__edit-btn" hx-get="/api/lots/edit-form/{{ lot.lot_id }}"
-                hx-target="#lot-add-dialog-content" hx-swap="innerHTML" value="lot-edit-btn">編集
-            </button>
+            <div class="lot-card__header">
+                <button class="lot-card__edit-btn" hx-get="/api/lots/edit-form/{{ lot.lot_id }}"
+                    hx-target="#lot-add-dialog__content" hx-swap="innerHTML" value="lot-edit-btn">編集
+                </button>
+            </div>
 
-            <p class="lot-card__id">{{ lot.lot_id }}</p>
-            <p class="lot-card__farm-house">{{ lot.farm or '-' }} / {{ lot.house or '-'}}</p>
-            <p class="lot-card__crops">栽培作物: {{ lot.crops or '未設定' }}</p>
-            <p class="lot-card__variety">栽培品種: {{ lot.variety or '未設定' }}</p>
+            <div class="lot-card__body">
+                <p class="lot-card__id">{{ lot.lot_id }}</p>
+                <p class="lot-card__farm-house">{{ lot.farm or '-' }} / {{ lot.house or '-'}}</p>
+                <p class="lot-card__crops">栽培作物：{{ lot.crops or '未設定' }}</p>
+                <p class="lot-card__variety">栽培品種：{{ lot.variety or '未設定' }}</p>
+            </div>
 
             <div class="buttons">
                 <a class="buttons__show-btn" href="/api/reports/get_reports/{{ lot.lot_id }}">日報を見る</a>
@@ -43,12 +48,12 @@
         {% endif %}
     </div>
 
-    <button hx-get="/api/lots/add-form" hx-target="#lot-add-dialog-content" hx-swap="innerHTML" class="lot-add-btn">
+    <button hx-get="/api/lots/add-form" hx-target="#lot-add-dialog__content" hx-swap="innerHTML" class="lot-add-btn">
         ＋
     </button>
 
-    <dialog id="lot-add-dialog">
-        <div id="lot-add-dialog-content" _="
+    <dialog id="lot-add-dialog" class="lot-add-dialog">
+        <div id="lot-add-dialog__content" _="
                 on htmx:afterSwap
                     call #lot-add-dialog.showModal()
                 end

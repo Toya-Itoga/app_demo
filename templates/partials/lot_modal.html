@@ -1,5 +1,6 @@
 <form class="lot-form" method="post"
     action="{{ '/api/lots/create_lot' if mode == 'create' else '/api/lots/update_lot' }}">
+    <p class="modal-title">新規ロット登録</p>
     <div class="lot-form__field">
         <label for="lot_id">ロットID</label>
         {% if mode == 'create' %}
@@ -30,7 +31,7 @@
     </div>
 
     <div class="lot-form__action">
-        <button type="submit">{{ '登録' if mode == 'create' else '更新' }}</button>
+        <button type="submit">{{ '保存' if mode == 'create' else '更新' }}</button>
         <button type="button" onclick="document.getElementById('lot-add-dialog').close()">閉じる</button>
     </div>
 </form>

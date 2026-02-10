@@ -1,36 +1,178 @@
+/* ============================
+   年月日
+============================ */
+.date p {
+    text-align: center;
+    font-weight: 600;
+    font-size: 36px;
+    margin: 20px 0 10px;
+}
+
+
+
+/* ============================
+   ロット基本情報
+============================ */
 .basic-information {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 0 auto 20px;
 
-    height: 110px;
-    width: 70%;
+    padding: 10px;
+    width: 80%;
     border: none;
     border-radius: 10px;
     background-color: darkgray;
 
-    gap: 6px;
-}
-
-.basic-information p {
-    margin: 0;
-    font-weight: 600;
+    /* gap: 6px; */
 }
 
 .basic-information__id {
+    font-weight: 600;
     font-size: 30px;
+    margin: 0 0 4px;
 }
 
-.basic-information__date {
-    font-size: 26px;
+.basic-information__farm-and-house,
+.basic-information__plant-counts {
+    font-weight: 600;
+    font-size: 20px;
+    color: #333;
+    margin: 0;
 }
 
 
 
+/* ============================
+   作業者入力
+============================ */
 .worker-input {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+
+
+/* ============================
+   スライダー
+============================ */
+.slider {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 0 auto 20px;
+}
+
+.slider__plant-status,
+.slider__pests {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.slider__row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.slider label {
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.slider__row span {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+}
+
+.slider__row input[type="range"] {
+    width: 80%;
+    flex: 1;
+    appearance: none;
+    height: 10px;
+    border-radius: 4px;
+    background: #444;
+}
+
+.slider__row input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: mediumseagreen;
+}
+
+
+
+/* ============================
+   コメント
+============================ */
+.comment-area {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 0 auto 30px;
+}
+
+.comment-area label {
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.comment {
+    width: 100%;
+    height: 120px;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 8px;
+    border-radius: 10px;
+    border: 4px solid gray;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    box-shadow: none;
+}
+
+.comment:focus {
+    border-color: mediumseagreen;
+}
+
+
+
+/* ============================
+   保存ボタン
+============================ */
+.submit-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+    margin: 0 auto 30px;
+    text-align: center;
+}
+
+.submit-area button {
+    -webkit-tap-highlight-color: transparent;
+    width: 100%;
+    padding: 10px 0;
+    background-color: mediumseagreen;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 34px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.submit-area button:active {
+    background-color: darkgreen;
 }

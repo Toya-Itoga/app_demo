@@ -1,8 +1,9 @@
 .page-title {
-    margin: 0;
+    text-align: center;
+    margin: 16px 0 16px;
 
-    font-weight: 600;
-    font-size: 30px;
+    font-weight: 700;
+    font-size: 36px;
 }
 
 
@@ -13,18 +14,160 @@ hr {
 
 
 
-.lot-card {
+/* ============================
+   ロットカード
+============================ */
+.lot-list {
     display: flex;
     flex-direction: column;
-    margin: 10px 0 10px;
+    align-items: center;
+    margin: 14px 0 100px;
+}
 
-    /* height: ; */
-    width: 70%;
-    border-radius: 12px;
-    border: 3px solid mediumseagreen;
+
+
+/* ============================
+   ロットカード
+============================ */
+.lot-card {
+    border: 5px solid mediumseagreen;
+    border-radius: 16px;
+    padding: 14px;
+    margin: 8px 0;
+    background-color: mintcream;
+    position: relative;
+    max-width: 600px;
+}
+
+
+
+/* ============================
+   編集ボタン
+============================ */
+.lot-card__header {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .lot-card__edit-btn {
-    height: 30px;
+    -webkit-tap-highlight-color: transparent;
+    background-color: green;
+    font-weight: 500;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.lot-card__edit-btn:active {
+    background-color: darkgreen;
+}
+
+
+/* ============================
+   ロット基本情報
+============================ */
+.lot-card__body p {
+    margin: 0;
+    font-weight: 600;
+    font-size: 20px;
+    color: #333;
+    /* line-height: 1.4; */
+}
+
+.lot-card__body .lot-card__id {
+    font-weight: 700;
+    font-size: 34px;
+    margin-top: 4px;
+    color: black;
+}
+
+
+
+/* ============================
+   ボタン部
+============================ */
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.buttons a {
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    text-align: center;
+    padding: 10px 16px;
+    width: 45%;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 22px;
+}
+
+.buttons__show-btn {
+    background-color: mediumseagreen;
+}
+
+.buttons__show-btn:active {
+    background-color: darkgreen;
+}
+
+.buttons__write-btn {
+    background-color: #0099a8;
+}
+
+.buttons__write-btn:active {
+    background-color: darkblue;
+}
+
+
+
+/* ============================
+   ロット追加ボタン
+============================ */
+.lot-add-btn {
+    -webkit-tap-highlight-color: transparent;
+    position: fixed;
+    bottom: 20px;
+    right: 14px;
+
     width: 70px;
+    height: 70px;
+    border-radius: 50%;
+
+    background-color: mediumseagreen;
+    color: white;
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 60px;
+    text-align: center;
+
+    border: 3px solid white;
+    cursor: pointer;
+}
+
+.lot-add-btn:active {
+    background-color: darkgreen;
+}
+
+
+
+/* ============================
+   ロットモーダル
+============================ */
+#lot-add-dialog {
+    width: 80%;
+    max-width: 320px;
+    border: 5px solid mediumseagreen;
+    border-radius: 40px;
+}
+
+#lot-add-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
 }
