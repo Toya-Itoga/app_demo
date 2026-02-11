@@ -8,6 +8,7 @@
 
     <!-- css -->
     <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/report_list.css">
 </head>
 
 <body>
@@ -18,15 +19,20 @@
 
     <!-- 詳細表示 -->
     {% if detail_report %}
-    <div class="detail_report">
-        <p>ロット: {{ lot_id }}</p>
-        <p>日付: {{ detail_report.date }}</p>
+    <div class="detail-report">
+        <div class="detail-report__report-information">
+            <p>ロット：{{ lot_id }}</p>
+            <p>年月日：{{ detail_report.date }}</p>
+        </div>
         <!-- <p>コメント: {{ detail_report.comment or 'コメントなし' }}</p> -->
-        <label for="ai_summary">AIまとめ</label>
-        <input type="text" name="ai_summary" value="{{ detail_report.ai_summary or 'AI要約はありません' }}" readonly>
+        <div class="detail-report__ai-summary">
+            <label for="ai-summary-text">AIまとめ</label>
+            <textarea name="ai-summary-text" readonly>{{ detail_report.ai_summary or 'AI要約はありません' }}</textarea>
+
+        </div>
     </div>
     {% else %}
-    <p>日報が未登録です</p>
+    <p class="detail-report__message">日報が未登録です</p>
     {% endif %}
 
     <hr>
@@ -36,16 +42,16 @@
         {% if reports and reports|length > 0 %}
         <div class="report_grid">
             {% for it in reports %}
-            <div class="report_card">
-                <span class="date">{{ it.date }}</span>
-                <a class="detail_btn" href="/api/reports/get_reports/{{ it.lot_id }}?date={{ it.date }}">
+            <div class="report-card">
+                <span class="report-card__date">{{ it.date }}</span>
+                <a class="report-card__btn" href="/api/reports/get_reports/{{ it.lot_id }}?date={{ it.date }}">
                     見る
                 </a>
             </div>
             {% endfor %}
         </div>
         {% else %}
-        <p>他の日報はありません</p>
+        <p class="reports__message">他の日報はありません</p>
         {% endif %}
     </div>
 
